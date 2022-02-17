@@ -103,7 +103,7 @@ void get_Choice(int& choice, int& amount, int totala[], bool& flag) {
 		if (amount < 0) {
 			cout << "Please enter a positive amount" << endl;
 		}
-		totala[choice - 1] = amount;
+		totala[choice - 1] = amount + totala[choice - 1];
 	}
 }
 
@@ -125,8 +125,8 @@ void transaction(int& choice, int& amount, double subtotal[]) {
 
 	cout << endl;
 	cout << "You ordered " << amount << " " << MENUITEMS[choice - 1] << endl;
-	cout << "The total for these items is $" << totali << endl;
-	cout << "Your subtotal so far is $" << subtotal[0] << "." << endl;
+	cout << "The total for these items is $" << fixed << setprecision(2) << totali << endl;
+	cout << "Your subtotal so far is $" << fixed << setprecision(2) << subtotal[0] << "." << endl;
 	cout << endl;
 }
 
@@ -154,9 +154,9 @@ void show_Receipt(double subtotal[], int totala[]) {
 	}
 	cout << endl;
 	cout << endl;
-	cout << "\t\tSubtotal:" << "           $" << subtotal[0] << endl;
-	cout << "\t\tTax:" << "                $" << tax << endl;
-	cout << "\t\tTotal:" << "              $" << subtotal[0] + tax << endl;
+	cout << "\t\tSubtotal:" << "           $" << fixed << setprecision(2) << subtotal[0] << endl;
+	cout << "\t\tTax:" << "                $" << fixed << setprecision(2) << tax << endl;
+	cout << "\t\tTotal:" << "              $" << fixed << setprecision(2) << subtotal[0] + tax << endl;
 	cout << endl;
 	cout << "\t\t\tHave a Blessed Day!" << endl;
 }
@@ -200,9 +200,9 @@ void print_Receipt(double subtotal[], int totala[]) {
 	}
 	fout << endl;
 	fout << endl;
-	fout << "\t\tSubtotal:" << "           $" << subtotal[0] << endl;
-	fout << "\t\tTax:" << "                $" << tax << endl;
-	fout << "\t\tTotal:" << "              $" << subtotal[0] + tax << endl;
+	fout << "\t\tSubtotal:" << "           $" << fixed << setprecision(2) << subtotal[0] << endl;
+	fout << "\t\tTax:" << "                $" << fixed << setprecision(2) << tax << endl;
+	fout << "\t\tTotal:" << "              $" << fixed << setprecision(2) << subtotal[0] + tax << endl;
 	fout << endl;
 	fout << "\t\t\tHave a Blessed Day!" << endl;
 
