@@ -1,0 +1,12 @@
+	*    *    *    *    *    *    *    *    *
+	Thank you for your order at Coffee Shop!
+	*    *    *    *    *    *    *    *    *
+
+	1   Coffee of the Day   at   $0.75   for   $0.75
+
+
+	      Subtotal:           $0.75
+	      Tax:                $0.04
+	      Total:              $0.79
+
+			Have a Blessed Day!

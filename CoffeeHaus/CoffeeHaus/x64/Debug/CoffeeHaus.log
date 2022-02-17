@@ -1,0 +1,3 @@
+﻿  CoffeeHaus.cpp
+C:\Users\bedside\Desktop\GitHub\Coffee Haus\CoffeeHaus.cpp(86,6): warning C4101: 'addt': unreferenced local variable
+  CoffeeHaus.vcxproj -> C:\Users\bedside\Desktop\GitHub\Coffee Haus\CoffeeHaus\x64\Debug\CoffeeHaus.exe

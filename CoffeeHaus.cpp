@@ -61,7 +61,7 @@ void display_Menu() {
 	//***********************************************************
 	cout << endl;
 	cout << "\t\t**Welcome to Coffee Shop!**\n";
-	cout << "\t\t\t       *Menu*" << endl;
+	cout << "\t\t          *Menu*" << endl;
 	cout << endl;
 	cout << "\t\t1. Coffee of the Day      $0.75" << endl;
 	cout << "\t\t2. Espresso               $1.50" << endl;
@@ -144,9 +144,9 @@ void show_Receipt(double subtotal[], int totala[]) {
 	//**********************************************
 	double tax = subtotal[0] * SALESTAX; // makes sure to calculate tax onto subtotal
 	cout << endl;
-	cout << "\t*    *    *    *    *    *    *    *    *    *    *" << endl;
+	cout << "\t*    *    *    *    *    *    *    *    *" << endl;
 	cout << "\tThank you for your order at Coffee Shop!" << endl;
-	cout << "\t*    *    *    *    *    *    *    *    *    *    *" << endl;
+	cout << "\t*    *    *    *    *    *    *    *    *" << endl;
 	cout << endl;
 	for (int i = 0; i < 6; i++) { // will check to see which index's of array have things in them
 		if (totala[i] >= 0) {
@@ -156,11 +156,11 @@ void show_Receipt(double subtotal[], int totala[]) {
 	}
 	cout << endl;
 	cout << endl;
-	cout << "\t\t    Subtotal:" << "           $" << fixed << setprecision(2) << subtotal[0] << endl;
-	cout << "\t\t    Tax:" << "                $" << fixed << setprecision(2) << tax << endl;
-	cout << "\t\t    Total:" << "              $" << fixed << setprecision(2) << subtotal[0] + tax << endl;
+	cout << "\t      Subtotal:" << "           $" << fixed << setprecision(2) << subtotal[0] << endl;
+	cout << "\t      Tax:" << "                $" << fixed << setprecision(2) << tax << endl;
+	cout << "\t      Total:" << "              $" << fixed << setprecision(2) << subtotal[0] + tax << endl;
 	cout << endl;
-	cout << "\t\t\tHave a Blessed Day!" << endl;
+	cout << "\t\tHave a Blessed Day!" << endl;
 }
 
 void print_Receipt(double subtotal[], int totala[]) {
@@ -189,9 +189,9 @@ void print_Receipt(double subtotal[], int totala[]) {
 	}
 
 	double tax = subtotal[0] * SALESTAX; // calculate tax onto subtotal
-	fout << "\t*    *    *    *    *    *    *    *    *    *    *" << endl;
+	fout << "\t*    *    *    *    *    *    *    *    *" << endl;
 	fout << "\tThank you for your order at Coffee Shop!" << endl;
-	fout << "\t*    *    *    *    *    *    *    *    *    *    *" << endl;
+	fout << "\t*    *    *    *    *    *    *    *    *" << endl;
 	fout << endl;
 
 	for (int i = 0; i < 6; i++) { // will check to see which index's of array have things in them
@@ -202,11 +202,11 @@ void print_Receipt(double subtotal[], int totala[]) {
 	}
 	fout << endl;
 	fout << endl;
-	fout << "\t\t    Subtotal:" << "           $" << fixed << setprecision(2) << subtotal[0] << endl;
-	fout << "\t\t    Tax:" << "                $" << fixed << setprecision(2) << tax << endl;
-	fout << "\t\t    Total:" << "              $" << fixed << setprecision(2) << subtotal[0] + tax << endl;
+	fout << "\t      Subtotal:" << "           $" << fixed << setprecision(2) << subtotal[0] << endl;
+	fout << "\t      Tax:" << "                $" << fixed << setprecision(2) << tax << endl;
+	fout << "\t      Total:" << "              $" << fixed << setprecision(2) << subtotal[0] + tax << endl;
 	fout << endl;
-	fout << "\t\t\tHave a Blessed Day!" << endl;
+	fout << "\t\tHave a Blessed Day!" << endl;
 
 	fout.close();
 }
