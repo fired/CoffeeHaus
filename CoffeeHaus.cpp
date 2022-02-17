@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <iomanip>
+#include <ios>
 #include <string>
 #include <fstream>
 using namespace std;
@@ -8,10 +9,10 @@ using namespace std;
 // Any global constants
 string MENUITEMS[] = { "Coffee of the Day", "Espresso", "Caffe Americano", "Caffe Latte", "Caffe Mocha", "Cappuccino" };
 double PRICES[] = { 0.75, 1.50, 1.75, 3.50, 4.00, 3.25 };
-int totala[6];
-double subtotal[1];
+int totala[6]; // track total amount of items bought per item
+double subtotal[1]; // track subtotal
 
-double const SALESTAX = 0.055;
+double const SALESTAX = 0.055; // for tax addition
 
 
 // Function prototypes
@@ -24,7 +25,7 @@ void print_Receipt(double subtotal[], int totala[]);
 
 int main()
 {
-	for (int d = 0; d < 6; d++) {
+	for (int d = 0; d < 6; d++) { // fills the array with -1 to read later to see what was actually bought
 		totala[d] = -1;
 	}
 	bool flag = false;
@@ -48,9 +49,18 @@ int main()
 }
 
 void display_Menu() {
+	//***********************************************************
+	// 
+	// display_Menu prints all the options that are are in the 
+	// coffee shop
+	// 
+	// Sent in: Nothing
+	// Sent back: Nothing
+	// 
+	//***********************************************************
 	cout << endl;
 	cout << "\t\t**Welcome to Coffee Shop!**\n";
-	cout << "\t\t\t   *Menu*" << endl;
+	cout << "\t\t\t       *Menu*" << endl;
 	cout << endl;
 	cout << "\t\t1. Coffee of the Day      $0.75" << endl;
 	cout << "\t\t2. Espresso               $1.50" << endl;
@@ -62,10 +72,21 @@ void display_Menu() {
 }
 
 void get_Choice(int& choice, int& amount, int totala[], bool& flag) {
+	//***************************************************************
+	// 
+	// get_Choice asks the user to select an option and to select an 
+	// amount of the option they want to get. Will also account for 
+	// if the user wants to stop ordering. 
+	// 
+	// Sent in: choice, amount, totala[], flag
+	// Sent back: changed array totala values, flag
+	// 
+	//***************************************************************
 	int addt;
 
 	while (!(choice >= 0 && choice < 7)) {
 		cout << "Please select an option" << endl;
+		cout << "\t";
 		cin >> choice;
 		if (choice == 7) {
 			flag = true;
@@ -77,6 +98,7 @@ void get_Choice(int& choice, int& amount, int totala[], bool& flag) {
 	}
 	while (!(amount > 0) && choice != 7) {
 		cout << "Please select an amount" << endl;
+		cout << "\t";
 		cin >> amount;
 		if (amount < 0) {
 			cout << "Please enter a positive amount" << endl;
@@ -86,6 +108,16 @@ void get_Choice(int& choice, int& amount, int totala[], bool& flag) {
 }
 
 void transaction(int& choice, int& amount, double subtotal[]) {
+	//*********************************************************
+	//
+	// transaction will take the choice and correlate it to price
+	// to display what you ordered and amount, total for the items
+	// bought, and subtotal so far. 
+	// 
+	// Sent in: choice, amount, subtotal[]
+	// Sent back: changed array subtotal
+	// 
+	//*********************************************************
 	double totali = 0;
 
 	totali = amount * PRICES[choice - 1];
@@ -99,6 +131,15 @@ void transaction(int& choice, int& amount, double subtotal[]) {
 }
 
 void show_Receipt(double subtotal[], int totala[]) {
+	//**********************************************
+	//
+	// show_Receipt will show what you have ordered
+	// in total at the end of your order.
+	// 
+	// Sent in: subtotal[], totala[]
+	// Sent back: Nothing
+	// 
+	//**********************************************
 	double tax = subtotal[0] * SALESTAX;
 	cout << endl;
 	cout << "\t*    *    *    *    *    *    *    *    *    *    *" << endl;
@@ -121,8 +162,25 @@ void show_Receipt(double subtotal[], int totala[]) {
 }
 
 void print_Receipt(double subtotal[], int totala[]) {
+	//***********************************************
+	//
+	// print_Receipt takes everything from show receipt
+	// and puts it into a text file to be able to look
+	// at it later. 
+	// 
+	// Sent in: subtotal[], totala[]
+	// Sent back: Nothing
+	// 
+	//***********************************************
 	ofstream fout;
-	fout.open("Receipt1.txt");
+	string endtxt = ".txt";
+	string reciname;
+
+	cout << endl;
+	cout << "What is your first name and first name only?:\n";
+	cin >> reciname;
+
+	fout.open(reciname + endtxt);
 	if (!fout.is_open()) {
 		cout << "unable to open file" << endl;
 		return;
@@ -146,7 +204,7 @@ void print_Receipt(double subtotal[], int totala[]) {
 	fout << "\t\tTax:" << "                $" << tax << endl;
 	fout << "\t\tTotal:" << "              $" << subtotal[0] + tax << endl;
 	fout << endl;
-	fout << "\t\tHave a Blessed Day!" << endl;
+	fout << "\t\t\tHave a Blessed Day!" << endl;
 
 	fout.close();
 }
