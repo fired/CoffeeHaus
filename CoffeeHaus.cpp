@@ -30,8 +30,8 @@ int main()
 	}
 	bool flag = false;
 	while (!flag) {
-		int choice = -1;
-		int amount = -1;
+		int choice = -1; // makes sure to be able to get into get_Choice
+		int amount = -1; // makes sure to be able to get into get_Choice
 
 		// Your program goes here!
 		display_Menu();
@@ -41,6 +41,7 @@ int main()
 		}
 
 	}
+	cout << endl;
 	cout << "Thank you for ordering" << endl;
 	show_Receipt(subtotal, totala);
 	print_Receipt(subtotal, totala);
@@ -103,7 +104,8 @@ void get_Choice(int& choice, int& amount, int totala[], bool& flag) {
 		if (amount < 0) {
 			cout << "Please enter a positive amount" << endl;
 		}
-		totala[choice - 1] = amount + totala[choice - 1];
+		else
+			totala[choice - 1] = amount + totala[choice - 1]; // makes sure to keep track of each drink and its total amount
 	}
 }
 
@@ -120,8 +122,8 @@ void transaction(int& choice, int& amount, double subtotal[]) {
 	//*********************************************************
 	double totali = 0;
 
-	totali = amount * PRICES[choice - 1];
-	subtotal[0] = subtotal[0] + totali;
+	totali = amount * PRICES[choice - 1]; // finds the total per choice and amount that comes in
+	subtotal[0] = subtotal[0] + totali; // keeps track of subtotal
 
 	cout << endl;
 	cout << "You ordered " << amount << " " << MENUITEMS[choice - 1] << endl;
@@ -140,23 +142,23 @@ void show_Receipt(double subtotal[], int totala[]) {
 	// Sent back: Nothing
 	// 
 	//**********************************************
-	double tax = subtotal[0] * SALESTAX;
+	double tax = subtotal[0] * SALESTAX; // makes sure to calculate tax onto subtotal
 	cout << endl;
 	cout << "\t*    *    *    *    *    *    *    *    *    *    *" << endl;
 	cout << "\tThank you for your order at Coffee Shop!" << endl;
 	cout << "\t*    *    *    *    *    *    *    *    *    *    *" << endl;
 	cout << endl;
-	for (int i = 0; i < 6; i++) {
+	for (int i = 0; i < 6; i++) { // will check to see which index's of array have things in them
 		if (totala[i] >= 0) {
-			double t = totala[i] * PRICES[i];
-			cout << "\t" << totala[i] << "   " << MENUITEMS[i] << "   at   " << "$" << PRICES[i] << "   for" << "   $" << t << endl;
+			double t = (totala[i] + 1) * PRICES[i];
+			cout << "\t" << totala[i] + 1 << "   " << MENUITEMS[i] << "   at   " << "$" << fixed << setprecision(2) << PRICES[i] << "   for" << "   $" << t << endl;
 		}
 	}
 	cout << endl;
 	cout << endl;
-	cout << "\t\tSubtotal:" << "           $" << fixed << setprecision(2) << subtotal[0] << endl;
-	cout << "\t\tTax:" << "                $" << fixed << setprecision(2) << tax << endl;
-	cout << "\t\tTotal:" << "              $" << fixed << setprecision(2) << subtotal[0] + tax << endl;
+	cout << "\t\t    Subtotal:" << "           $" << fixed << setprecision(2) << subtotal[0] << endl;
+	cout << "\t\t    Tax:" << "                $" << fixed << setprecision(2) << tax << endl;
+	cout << "\t\t    Total:" << "              $" << fixed << setprecision(2) << subtotal[0] + tax << endl;
 	cout << endl;
 	cout << "\t\t\tHave a Blessed Day!" << endl;
 }
@@ -177,7 +179,7 @@ void print_Receipt(double subtotal[], int totala[]) {
 	string reciname;
 
 	cout << endl;
-	cout << "What is your first name and first name only?:\n";
+	cout << "What is your first name and first name only?:\n"; // text file name per user
 	cin >> reciname;
 
 	fout.open(reciname + endtxt);
@@ -186,23 +188,23 @@ void print_Receipt(double subtotal[], int totala[]) {
 		return;
 	}
 
-	double tax = subtotal[0] * SALESTAX;
+	double tax = subtotal[0] * SALESTAX; // calculate tax onto subtotal
 	fout << "\t*    *    *    *    *    *    *    *    *    *    *" << endl;
 	fout << "\tThank you for your order at Coffee Shop!" << endl;
 	fout << "\t*    *    *    *    *    *    *    *    *    *    *" << endl;
 	fout << endl;
 
-	for (int i = 0; i < 6; i++) {
+	for (int i = 0; i < 6; i++) { // will check to see which index's of array have things in them
 		if (totala[i] >= 0) {
-			double t = totala[i] * PRICES[i];
-			fout << "\t" << totala[i] << "   " << MENUITEMS[i] << "   at   " << "$" << PRICES[i] << "   for" << "   $" << t << endl;
+			double t = (totala[i] + 1) * PRICES[i];
+			fout << "\t" << totala[i] + 1 << "   " << MENUITEMS[i] << "   at   " << "$" << fixed << setprecision(2) << PRICES[i] << "   for" << "   $" << t << endl;
 		}
 	}
 	fout << endl;
 	fout << endl;
-	fout << "\t\tSubtotal:" << "           $" << fixed << setprecision(2) << subtotal[0] << endl;
-	fout << "\t\tTax:" << "                $" << fixed << setprecision(2) << tax << endl;
-	fout << "\t\tTotal:" << "              $" << fixed << setprecision(2) << subtotal[0] + tax << endl;
+	fout << "\t\t    Subtotal:" << "           $" << fixed << setprecision(2) << subtotal[0] << endl;
+	fout << "\t\t    Tax:" << "                $" << fixed << setprecision(2) << tax << endl;
+	fout << "\t\t    Total:" << "              $" << fixed << setprecision(2) << subtotal[0] + tax << endl;
 	fout << endl;
 	fout << "\t\t\tHave a Blessed Day!" << endl;
 
